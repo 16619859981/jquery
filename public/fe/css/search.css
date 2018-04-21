@@ -1,0 +1,242 @@
+/* reset */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+p,
+blockquote,
+pre,
+hr,
+figure,
+table,
+caption,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+menu {
+  margin: 0;
+  padding: 0;
+}
+header,
+footer,
+section,
+article,
+aside,
+nav,
+hgroup,
+address,
+figure,
+figcaption,
+menu,
+details {
+  display: block;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,
+th {
+  text-align: left;
+  font-weight: normal;
+}
+html,
+body,
+fieldset,
+img,
+iframe,
+abbr {
+  border: 0;
+}
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: normal;
+}
+[hidefocus],
+summary {
+  outline: 0;
+}
+li {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small {
+  font-size: 100%;
+}
+sup,
+sub {
+  font-size: 83%;
+}
+pre,
+code,
+kbd,
+samp {
+  font-family: inherit;
+}
+q:before,
+q:after {
+  content: none;
+}
+textarea {
+  overflow: auto;
+  resize: none;
+}
+label,
+summary {
+  cursor: default;
+}
+a,
+button {
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+strong,
+b {
+  font-weight: bold;
+}
+del,
+ins,
+u,
+s,
+a,
+a:hover {
+  text-decoration: none;
+}
+body,
+textarea,
+input,
+button,
+select,
+keygen,
+legend {
+  font: 12px/1.14 arial, 'Microsoft YaHei';
+  color: #333;
+  outline: 0;
+}
+body {
+  background: #fff;
+}
+a,
+a:hover {
+  color: #333;
+}
+* {
+  box-sizing: border-box;
+}
+.mui-bar-nav {
+  width: 100%;
+  height: 45px;
+  background-color: #006699;
+}
+.mui-bar-nav a {
+  color: #fff;
+}
+.mui-bar-nav h1 {
+  color: #fff;
+}
+.mui-bar-tab {
+  width: 100%;
+  height: 50px;
+  background-color: #006699;
+}
+.mui-bar-tab a,
+.mui-bar-tab span {
+  color: #fff;
+}
+.mui-bar-tab span {
+  margin-top: 5px;
+}
+.mui-content {
+  background-color: #fff;
+}
+.mui-search {
+  position: relative;
+  margin-top: 10px;
+  padding: 0 10px;
+}
+.mui-search input {
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  padding-left: 10px;
+  text-align: left;
+  border: 1px solid #006699;
+  background: #fff;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.mui-search .btn {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  height: 30px;
+  width: 60px;
+  background: #006699;
+  border-radius: 0 4px 4px 0;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+  line-height: 30px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+.mui-none {
+  width: 100%;
+  padding: 10px;
+  color: #666;
+}
+.mui-none p {
+  font-size: 12px;
+}
+.history {
+  margin: 10px;
+  display: none;
+}
+.history .mui-clearfix {
+  width: 100%;
+  margin-bottom: 15px;
+}
+.history .mui-clearfix span {
+  display: block;
+  font-size: 14px;
+}
+.history .hh {
+  width: 100%;
+  border: 1px solid #ccc;
+}
+.history .hh li {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}

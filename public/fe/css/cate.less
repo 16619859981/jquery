@@ -1,0 +1,103 @@
+// 引入变量表
+@import './setting.less';
+// 引入浏览器初始化样式
+@import './reset.less';
+
+body {
+    background-color: #ccc;
+}
+
+//登录页面的头部
+.mui-bar-nav {
+    width: 100%;
+    height: 45px;
+    background-color: @bgColor;
+    position: relative;
+    padding:8px 40px;
+    a {
+        color:@color;
+    }
+
+    h1 {
+        color:@color;
+    }
+    a:first-child {
+        position: absolute;
+        top:0;
+        left:10px;
+
+    }
+    a:last-child {
+        position: absolute;
+        top:4px;
+        right:10px;
+        font-size: 18px;
+        
+        // color:#fff;
+    }
+    .search {
+
+        width: 100%;
+        height: 30px;
+        background-color: @color;
+        border-radius: 3px;
+    }
+    
+}
+.mui-bar-tab {
+    width: 100%;
+    height: 50px;
+    background-color: @bgColor;
+    a,span {
+        color:@color; 
+    }
+    span{
+        margin-top: 5px;
+    }
+}
+
+.mui-bar-nav~.mui-content {
+    padding-top: 0px;
+    background-color: #ccc;
+    display: flex;
+
+    .left {
+            ul {
+        width: 100%;
+        // height: 100%;
+    }
+    li {
+        width: 80px;
+        height: 44px;
+        text-align: center;
+        line-height: 44px;
+        background-color: @color;
+        border-bottom: 1px solid #ccc;
+    }
+    .active {
+        background-color: #ccc;
+    }
+    }
+    .right {
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: @color;
+
+        ul {
+            width: 100%;
+
+        }
+        li {
+            float: left;
+            width: 33.33%;
+            img {
+                width: 100%;
+                vertical-align: middle;
+            }
+        }
+    }
+
+}

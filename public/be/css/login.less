@@ -1,0 +1,51 @@
+// 引入变量表
+@import './setting.less';
+// 引入浏览器初始化样式
+@import './reset.less';
+//头部尾部
+@import './all.less';
+
+.mui-content {
+    padding:0 10px;
+    margin-top: 10px;
+    background-color: @color;
+    .mui-center {
+        // width: 100%;
+        position: relative;
+    }
+    input {
+        width: 100%;
+        height: 38px;
+        font-size:17px;
+    }
+    input:last-child {
+        margin-top: 15px;
+
+    }
+    .sp{
+        position: absolute;
+        right:7px;
+        bottom:22px;
+        color:#999;
+
+
+    }
+    .login {
+        display: block;
+        margin-top: 26px;
+        height: 34px;
+        background-color: @logoin;
+        text-align: center;
+        line-height: 34px;
+        font-size: 17px;
+        color:@color;
+        border-radius: 3px;
+    }
+    a {
+        display: block;
+        margin-top: 24px;
+        float: right;
+        color:@logoin;
+    }
+  
+} 

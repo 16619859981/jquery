@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>分类</title>
+  <link rel="stylesheet" href="./mui/css/mui.min.css">
+  <link rel="stylesheet" href="./css/cate.css">
+  <link rel="stylesheet" href="./res/fontAwesome/css/font-awesome.min.css"/>
+</head>
+
+<body>
+  <header class="mui-bar mui-bar-nav">
+    <!-- mui-plus-visible 的含义就是diplay:none -->
+    <a class="mui-icon fa fa-arrow-left mui-pull-left " href="javascript:history.back();"></a>
+    <!-- <a class="mui-icon mui-icon-arrowthinleft"></a> -->
+   <div class="search"></div>
+    <a id="info-search" class="mui-icon fa fa-search" ></a>
+   
+  </header>
+    
+  <nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item mui-active" href="#tabbar">
+      <span class="mui-icon fa fa-home"></span>
+      <span class="mui-tab-label">首页</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-chat">
+      <span class="mui-icon fa fa-bars">
+   
+      </span>
+      <span class="mui-tab-label">分类</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-contact">
+      <!-- <span class="mui-icon mui-icon-extra-cart"></span> -->
+      <span class="mui-icon tab_cart fa fa-shopping-cart"></span>
+      <span class="mui-tab-label">购物车</span>
+    </a>
+    <a class="mui-tab-item" href="#tabbar-with-map">
+      <span class="mui-icon fa fa-user"></span>
+      <span class="mui-tab-label">个人中心</span>
+    </a>
+  </nav>
+
+  <!-- 所有的内容 再mui-content中写 -->
+  <main class="mui-content">
+    <div class="left">
+        <ul>
+            <li class="active"><a href="javascript:;">运动馆</a></li>
+            <li><a href="javascript:;" data-id="1">女士馆</a></li>
+            <li><a href="javascript:;" data-id="2">男士馆</a></li>
+            <li><a href="javascript:;" data-id="3">帆布馆</a></li>
+            <li><a href="javascript:;" data-id="4">户外馆</a></li>
+        </ul>
+    </div>
+    <section class="sort-content mui-srcoll-wrapper">
+      <div class="mui-scroll">
+        <ul>
+          <li>
+            <a href="javascript:;">
+              <img src="./image/brand1.png" alt="">
+              <span>nike</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <img src="./image/brand2.png" alt="">
+              <span>阿迪达斯</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <img src="./image/brand3.png" alt="">
+              <span>三叶草</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <img src="./image/brand4.png" alt="">
+              <span>新百伦</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+  </main>
+  <script type="text/template" id="first-templ">
+        <%for (var i = 0; i < rows.length; i++ ) {%>
+      <%if (i == 0) {%>
+          <li class="active" data-id="<%= rows[i].id%>"><%= rows[i].categoryName %></li>
+        <%} else {%>
+          <li  data-id="<%= rows[i].id%>"><%= rows[i].categoryName %></li>
+        <%}%>
+      <%}%>
+  </script>
+    <!-- 引入zepto -->
+  <script src="./lib/zepto/zepto.min.js"></script>
+  <!-- 引入MUI -->
+  <script src="./lib/mui/js/mui.js"></script>
+  <script src="./lib/artTemplate/template-native.js"></script>
+  <!-- 引入首页js -->
+  <script src="./js/cate.js"></script>
+</body>
+
+</html>
