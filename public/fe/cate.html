@@ -8,7 +8,8 @@
   <title>分类</title>
   <link rel="stylesheet" href="./mui/css/mui.min.css">
   <link rel="stylesheet" href="./css/cate.css">
-  <link rel="stylesheet" href="./res/fontAwesome/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="./css/all.css">
+  <link rel="stylesheet" href="./res/fontAwesome/css/font-awesome.min.css" />
 </head>
 
 <body>
@@ -16,47 +17,48 @@
     <!-- mui-plus-visible 的含义就是diplay:none -->
     <a class="mui-icon fa fa-arrow-left mui-pull-left " href="javascript:history.back();"></a>
     <!-- <a class="mui-icon mui-icon-arrowthinleft"></a> -->
-   <div class="search"></div>
-    <a id="info-search" class="mui-icon fa fa-search" ></a>
-   
+    <div class="search"></div>
+    <a id="info-search" href="./search.html" class="mui-icon fa fa-search"></a>
+
   </header>
-    
-  <nav class="mui-bar mui-bar-tab">
-    <a class="mui-tab-item mui-active" href="#tabbar">
-      <span class="mui-icon fa fa-home"></span>
-      <span class="mui-tab-label">首页</span>
-    </a>
-    <a class="mui-tab-item" href="#tabbar-with-chat">
-      <span class="mui-icon fa fa-bars">
-   
-      </span>
-      <span class="mui-tab-label">分类</span>
-    </a>
-    <a class="mui-tab-item" href="#tabbar-with-contact">
-      <!-- <span class="mui-icon mui-icon-extra-cart"></span> -->
-      <span class="mui-icon tab_cart fa fa-shopping-cart"></span>
-      <span class="mui-tab-label">购物车</span>
-    </a>
-    <a class="mui-tab-item" href="#tabbar-with-map">
-      <span class="mui-icon fa fa-user"></span>
-      <span class="mui-tab-label">个人中心</span>
-    </a>
-  </nav>
+
+  <!-- 2.底部 -->
+  <nav class="lt-footer mui-bar mui-bar-tab">
+      <a class="mui-item" href="./index.html">
+        <span class="fa fa-home"></span>
+        <span class="mui-tab-label">首页</span>
+      </a>
+      <a class="mui-item mui-active" href="./cate.html">
+        <span class="fa fa-reorder"></span>
+        <span class="mui-tab-label">分类</span>
+      </a>
+      <a class="mui-item " href="./cart.html">
+        <span class="fa fa-shopping-cart"></span>
+        <span class="mui-tab-label">购物车</span>
+      </a>
+      <a class="mui-item" href="./person.html">
+        <span class="fa fa-user"></span>
+        <span class="mui-tab-label">个人中心</span>
+      </a>
+    </nav>
+      
+ 
 
   <!-- 所有的内容 再mui-content中写 -->
   <main class="mui-content">
     <div class="left">
-        <ul>
-            <li class="active"><a href="javascript:;">运动馆</a></li>
-            <li><a href="javascript:;" data-id="1">女士馆</a></li>
-            <li><a href="javascript:;" data-id="2">男士馆</a></li>
-            <li><a href="javascript:;" data-id="3">帆布馆</a></li>
-            <li><a href="javascript:;" data-id="4">户外馆</a></li>
-        </ul>
+      <ul class="ul">
+        <li class="active" data-id="1">运动馆</li>
+        <li data-id="2">女士馆</li>
+        <li data-id="3">男士馆</li>
+        <li data-id="4">帆布馆</li>
+        <li data-id="5">户外馆</li>
+      </ul>
     </div>
     <section class="sort-content mui-srcoll-wrapper">
       <div class="mui-scroll">
-        <ul>
+          <!-- <div class="loading">数据加载中…………</div> -->
+        <ul class="sec-ul">
           <li>
             <a href="javascript:;">
               <img src="./image/brand1.png" alt="">
@@ -82,20 +84,42 @@
             </a>
           </li>
         </ul>
+
       </div>
 
     </section>
   </main>
   <script type="text/template" id="first-templ">
-        <%for (var i = 0; i < rows.length; i++ ) {%>
+    <%for (var i = 0; i < rows.length; i++ ) {%>
       <%if (i == 0) {%>
-          <li class="active" data-id="<%= rows[i].id%>"><%= rows[i].categoryName %></li>
+        <li class="active" data-id="<%= rows[i].id%>">
+          <%= rows[i].categoryName %>
+        </li>
         <%} else {%>
-          <li  data-id="<%= rows[i].id%>"><%= rows[i].categoryName %></li>
-        <%}%>
-      <%}%>
+          <li data-id="<%= rows[i].id%>">
+            <%= rows[i].categoryName %>
+          </li>
+          <%}%>
+            <%}%>
   </script>
-    <!-- 引入zepto -->
+
+  <script type="text/template" id="second-templ">
+    <%if (rows.length == 0) {%>
+      <p>没有货了哦！</p>
+      <%} else {%>
+        <%for (var i = 0; i< rows.length; i++){%>
+          <li>
+            <a href="javascript:;" data-id="<%=rows[i].id%>" data-categoryid="<%=rows[i].categoryId%>">
+              <img src="<%= rows[i].brandLogo%>" alt="">
+              <span>
+                <%=rows[i].brandName%>
+              </span>
+            </a>
+          </li>
+          <%}%>
+            <%}%>
+  </script>
+  <!-- 引入zepto -->
   <script src="./lib/zepto/zepto.min.js"></script>
   <!-- 引入MUI -->
   <script src="./lib/mui/js/mui.js"></script>

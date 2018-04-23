@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./mui/css/mui.min.css">
     <link rel="stylesheet" href="./css/searchList.css">
+    <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./res/fontAwesome/css/font-awesome.min.css" />
     <title>Document</title>
 </head>
@@ -20,30 +21,28 @@
         <h1 class="mui-title">搜索</h1>
     </header>
 
-    <nav class="mui-bar mui-bar-tab">
-        <a class="mui-tab-item mui-active" href="#tabbar">
-            <span class="mui-icon fa fa-home"></span>
-            <span class="mui-tab-label">首页</span>
+   <!-- 2.底部 -->
+   <nav class="lt-footer mui-bar mui-bar-tab" >
+        <a class="mui-item " href="./index.html">
+          <span class="fa fa-home"></span>
+          <span class="mui-tab-label">首页</span>
         </a>
-        <a class="mui-tab-item" href="#tabbar-with-chat">
-            <span class="mui-icon fa fa-bars">
-
-            </span>
-            <span class="mui-tab-label">分类</span>
+        <a class="mui-item mui-active" href="./cate.html">
+          <span class="fa fa-reorder"></span>
+          <span class="mui-tab-label">分类</span>
         </a>
-        <a class="mui-tab-item" href="#tabbar-with-contact">
-            <!-- <span class="mui-icon mui-icon-extra-cart"></span> -->
-            <span class="mui-icon tab_cart fa fa-shopping-cart"></span>
-            <span class="mui-tab-label">购物车</span>
+        <a class="mui-item " href="./cart.html">
+          <span class="fa fa-shopping-cart"></span>
+          <span class="mui-tab-label">购物车</span>
         </a>
-        <a class="mui-tab-item" href="#tabbar-with-map">
-            <span class="mui-icon fa fa-user"></span>
-            <span class="mui-tab-label">个人中心</span>
+        <a class="mui-item" href="./person.html">
+          <span class="fa fa-user"></span>
+          <span class="mui-tab-label">个人中心</span>
         </a>
-    </nav>
+      </nav>
     <main class="mui-content">
         <div class="mui-search">
-            <input type="text" placeholder="搜索你喜欢的商品">
+            <input type="text" placeholder="搜索你喜欢的商品" class="inp">
             <a href="javascript:;" class="btn">搜索</a>
         </div>
         <div class="bar">
@@ -64,7 +63,7 @@
 
             <div class="sports-content">
                 <ul>
-                    <li>
+                    <!-- <li>
                         <div class="item">
                             <img src="./image/product.jpg" alt="">
                             <p>adidas阿迪达斯 男式 场下休闲篮球鞋S83700 </p>
@@ -108,7 +107,7 @@
                                 <span>&yen;560.00</span>
                                 <span>&yen;888.00</span>
                             </div>
-                            <!-- 用a 好跳转  用button更符合语义 -->
+         
                             <a href="javascript:;">立即购买</a>
                         </div>
                     </li>
@@ -120,7 +119,7 @@
                                 <span>&yen;560.00</span>
                                 <span>&yen;888.00</span>
                             </div>
-                            <!-- 用a 好跳转  用button更符合语义 -->
+
                             <a href="javascript:;">立即购买</a>
                         </div>
                     </li>
@@ -132,16 +131,38 @@
                                 <span>&yen;560.00</span>
                                 <span>&yen;888.00</span>
                             </div>
-                            <!-- 用a 好跳转  用button更符合语义 -->
+       
                             <a href="javascript:;">立即购买</a>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
         <div class="nomore">没有更多数据了</div>
 
     </main>
+    <script type="text/template" id ="temp"> 
+        <%for(var i = 0 ;i <data.length;i++){%>
+            <li>
+                <div class="item">
+                    <img src="<%=data[i].pic[0].picAddr%>" alt="">
+                    <p><%=data[i].proName%> </p>
+                    <div class="price">
+                        <span>&yen;<%= data[i].price%></span>
+                        <span>&yen;<%= data[i].oldPrice%></span>
+                    </div>
+    
+                    <a href="javascript:;"><%=data[i].num%>购买</a>
+                </div>
+            </li>
+
+       <% }%>
+
+    </script>
+<script src ="./lib/zepto/zepto.min.js"></script>
+<script src ="./lib/mui/js/mui.min.js"></script>
+<script src = "./lib/artTemplate/template-native.js"></script>
+<script src ="./js/searchList.js"></script>
 </body>
 
 </html>

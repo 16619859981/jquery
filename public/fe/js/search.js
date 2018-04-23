@@ -1,124 +1,114 @@
+//页面载入之后，加载搜索关键字列表
+//在点击搜索按钮的时候，在输入框中的信息如果是空那么提示，不为空就添加到历史记录中，跳转
 
-// 功能
-// 1.点击搜索按钮 如果没有内容那么提示输入内容 如果有内容 那么就根据内容去搜索 跳转
-// 2.历史记录列表的展示
-// 3.点击某一条记录的文字 回跳转搜索
-// 4.点击X号 会删除一条历史记录  重新渲染列表
-// 5.点击清空历史记录 历史记录就被清空了 重新加载列表 没有就显示 --没有历史搜索记录
+//在关键字列表中点击某一个关键字，d会跳转到搜索结果页面
+//点击删除按钮，会把关键字从历史记录中删除，b并重新渲染到关键字列表到页面
+//点击清空按钮。清空历史记录。
+$(function(){
+    //载入的时候。显示历史记录
+    showHistoryList();
+    //点击搜索按钮的时候，判断，空提示，不空添加到历史记录，渲染到页面
+    $('.btn').on('click',function(){
+        //获取对应的input的内容
+        var inputMsg = $('input').val();
+        if(!inputMsg.trim()){
+            //mui的弹窗
+            mui.alert("请输入查询内容！！")
+        } else {
+            //调用函数
+            setHistoryList(inputMsg);
+            showHistoryList();
+        }
+        //点击跳转到对应的商品列表
+        location.href = "./searchList.html?kwd="+inputMsg;
+        //清空输入框
+        $('input').val("");
+    });
+    //点击关键字就跳转到搜索页面
+    $(".hh").on("click",'.font',function(){
+        //获取对应文本框的内容以便于发送给后台
+        var text = $(this).text();
+        // console.log(text);
+        //传送数据
+        location.href = "./searchList.html?kwd="+text;
+    })
+    //点击删除按钮，删除历史记录，页面重新渲染
+    $('.hh').on('click','.del',function(){
+        var text  = $(this).siblings().text();
+        delHistoryList(text);
+        showHistoryList();
+    })
+    //清空按钮
+    $('.clear').on('click',function(){
+        clearHistoryList();
+        showHistoryList();
+    })
 
-
-$(function () {
-  // 0.历史记录列表的展示
-  showHistory();
-  // 1.点击搜索按钮 如果没有内容那么提示输入内容 如果有内容 那么就根据内容去搜索 跳转搜索结果页
-  //  1.1 获取按钮点击 
-  $('.search-btn').on('tap', function () {
-    var keywords = $.trim($(".search-box input").val());
-    // console.log(keywords);
-    //  1.2 判断有没有数据 没有数据就提示
-    if (keywords == '') {
-      mui.toast("请输入关键字");
-    } else {
-      // console.log(keywords);
-      //  1.3 输入有数据  就设置历史记录
-      setHistory(keywords);
-      $(".search-box input").val('');
-      // 下一页是搜索结果页 那么结果怎么搜索出来呢？
-      location.href = './searchList.html?'+'keywords='+keywords;
-    }
-
-  })
-
-  // 2.点击某一条记录的文字 去搜索结果列表
-  $(".history").on('tap','.history-list span',function(){
-    // 2.1 获取点击的元素的文字
-    var keywords = $(this).text();
-    
-    location.href = './searchList.html?'+'keywords='+keywords;
-  })
-  // 3.点击X号 会删除一条历史记录  重新渲染列表
-  $(".history").on('tap', '.history-list i', function () {
-    // console.log(1);
-    // 3.1 得我要删除的记录是什么 找到那个字
-    var text =$(this).siblings('span').text();
-      // console.log(text);
-    // 点击删除按钮(X号)的时候，我们去获取它的兄弟元素中的历史记录数据
-    // 当我们获取到历史记录数据中的关键字的时候 我们通过删除方法 把这个关键字从localStorage中删除 那再次渲染的时候 就没有了
-    // 3.2 调用删除方法删掉
-    delHistory(text);
-    // 3.3 重新渲染页面
-    showHistory();
-  })
-
-  // 4. 点击清空历史记录 历史记录就被清空了
-  $('.history').on('tap','.history-title-manager span:nth-child(2)',function(){
-    // console.log(1);
-    clearHistory();
-    showHistory();
-  })
 
 })
 
-// 获取历史记录
-function getHistory() {
-  // 0.我们通过localstorage存入的是json数据
-  // 1.我们需要的是什么样的数据 --js对象或数组 把json转成数组或对象
-  return JSON.parse(window.localStorage.getItem('ltHistory') || '[]');
+//获取历史记录数据  返回数组或者对象
+
+var getHistoryList = function() {
+    return JSON.parse(window.localStorage.getItem('History')||'[]');
+//此时返回的是一个数组
 }
 
-// console.log(getHistory()); 需要的数组
+//测试
+// console.log(getHistoryList());
 
-// 设置历史记录
-function setHistory(key) {
-  // 1.获取历史记录  ['1','2']
-  var historyArray = getHistory();
-  // 2.遍历获取来的历史记录 然后 判断新传入的关键字是否已经在历史记录中了如果在了就删掉
-  $.each(historyArray, function (index, item) {
-    if (item == key) {
-      historyArray.splice(index, 1);
-    }
-  })
-  // 3.把新的关键字添加到历史记录数组中
-  historyArray.push(key);
-  // 4.把数组转换为字符串 然后放入localStorage中
-  window.localStorage.setItem('ltHistory', JSON.stringify(historyArray));
+//设置历史记录数据
+var setHistoryList = function(kwd){
+
+    //先获取历史记录。遍历，去重。push。然后重新渲染历史记录和页面。
+    var HistoryData = getHistoryList();
+    HistoryData.forEach(function(item,index){
+        //去重
+        if(item==kwd){
+            //那么就splice
+            HistoryData.splice(index,1);
+        }
+    })
+    HistoryData.push(kwd);
+    //把数组转成字符串
+    window.localStorage.setItem('History', JSON.stringify(HistoryData));
+
+}
+//测试
+// setHistoryList('nike');
+// setHistoryList('lining');
+// setHistoryList('aaaa');
+
+//删除历史记录数据
+var delHistoryList = function(kwd) {
+    //获取历史记录
+    var HistoryData = getHistoryList();
+    //遍历。删掉对应的数据
+    HistoryData.forEach(function(item,index){
+        if(kwd==item) {
+            HistoryData.splice(index,1)
+        }
+    })
+    window.localStorage.setItem('History', JSON.stringify(HistoryData));
+
+}
+// delHistoryList('aaaa');
+//清除历史记录
+var clearHistoryList = function() {
+    window.localStorage.removeItem('History');
 }
 
-// setHistory('nike');
-
-// 删除历史记录
-function delHistory(key) {
-  // 获取历史记录
-  var historyArray = getHistory();
-  // 遍历删除
-  $.each(historyArray, function (index, item) {
-    if (item == key) {
-      historyArray.splice(index, 1);
-    }
-  })
-  // 把数组转换为json 放入localStorage
-  window.localStorage.setItem('ltHistory', JSON.stringify(historyArray));
-}
-
-// delHistory('nike');
-
-// 清空历史记录
-function clearHistory() {
-  window.localStorage.removeItem('ltHistory');
-}
-
-// 展示历史记录(模板 只是用在结构比较复杂的时候)
-function showHistory() {
-  // 1.获取历史记录(数组)
-  var historyArray = getHistory();
-  // console.log(historyArray);
-  // 2.渲染数据 template(id,对象)
-  var historyResult = template('history-template', { arr: historyArray });
-  // 3.把数据写入页面中
-  $('.history').html(historyResult);
-}
-
-showHistory();
-
-
-// 历史记录搜索框输入什么都会跳转 我想的是应该输入能匹配到的才能跳转
+//显示在页面上
+var showHistoryList = function () {
+    // 获取历史记录
+    var historyData = getHistoryList();
+    // 模板
+  
+    // 使用template方法渲染模板
+    var historyResult = template('history-temp', { data: historyData });
+    // 把渲染好的数据添加的列表中
+    // console.log(historyResult);
+    $('.history').html(historyResult);
+  }
+//   showHistoryList();
+  
